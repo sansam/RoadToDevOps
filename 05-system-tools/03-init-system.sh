@@ -343,8 +343,8 @@ function config_system_parameter(){
 ### Max open file limit 
 * soft nofile 15000000
 * hard nofile 15000000
-* soft noproc 15000000
-* hard noproc 15000000
+* soft nproc 15000000
+* hard nproc 15000000
 _EOF_
 
     if [[ $os == 'centos' ]];then
@@ -358,8 +358,8 @@ _EOF_
 
     if [[ $os == 'centos' || $os == 'ubuntu' ]];then
         cat >>'/etc/systemd/system.conf' <<"_EOF_"
-DefaultTimeoutStartSec=30s
-DefaultTimeoutStopSec=30s
+DefaultTimeoutStartSec=120s
+DefaultTimeoutStopSec=120s
 DefaultRestartSec=5s
 DefaultLimitCORE=infinity
 DefaultLimitNOFILE=infinity
@@ -367,11 +367,11 @@ DefaultLimitNPROC=infinity
 _EOF_
     elif [[ $os == 'rocky' || $os == 'alma' ]];then
         cat >>'/etc/systemd/system.conf' <<"_EOF_"
-DefaultTimeoutStartSec=30s
-DefaultTimeoutStopSec=30s
+DefaultTimeoutStartSec=120s
+DefaultTimeoutStopSec=120s
 DefaultRestartSec=5s
-DefaultLimitNOFILE=18446744073709551615
-DefaultLimitNPROC=18446744073709551615
+DefaultLimitNOFILE=15000000
+DefaultLimitNPROC=15000000
 _EOF_
     fi
 
