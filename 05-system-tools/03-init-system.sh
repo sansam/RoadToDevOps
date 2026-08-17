@@ -341,7 +341,7 @@ function config_system_parameter(){
 
     cat >>/etc/security/limits.conf<<"_EOF_"
 ### Max open file limit 
-* soft nofile 15000000
+* soft nofile 65535
 * hard nofile 15000000
 * soft nproc 15000000
 * hard nproc 15000000
